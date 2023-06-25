@@ -16,4 +16,9 @@
     console.log(`disconnect due to ${reason}`);
   });
 
+  socket.on('topic', (message) => {
+    const msgEl = document.getElementById('msg')
+    msgEl.innerText = message
+  })
+
 })();

@@ -7,5 +7,65 @@
   <body>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/main.js"></script>
+
+    <script>
+      function downloadZipSameOrigin() {
+        const a = document.createElement('a');
+        a.href = "/putty.gz";
+        a.download = `xx.gz`;
+        a.click();
+        a.remove();
+      }
+
+      function downloadZipDifferentHost() {
+        const a = document.createElement('a');
+        a.href = "https://the.earth.li/~sgtatham/putty/latest/putty-0.78.tar.gz";
+        a.download = `xx.gz`;
+        a.click();
+        a.remove();
+      }
+
+      function downloadZipDifferentHostTargetBlank() {
+        const a = document.createElement('a');
+        a.href = "https://the.earth.li/~sgtatham/putty/latest/putty-0.78.tar.gz";
+        a.download = `xx.gz`;
+        a.target = '_blank'
+        a.click();
+        a.remove();
+      }
+
+      function downloadJsDifferentHost() {
+        const a = document.createElement('a');
+        a.href = "https://raw.githubusercontent.com/socketio/socket.io-fiddle/issues/socket.io/4436/client.js";
+        a.download = `xx.js`;
+        a.click();
+        a.remove();
+      }
+
+      function downloadMsiSameOrigin() {
+        const a = document.createElement('a');
+        a.href = "/putty.msi";
+        a.download = `xx.msi`;
+        a.click();
+        a.remove();
+      }
+
+      function downloadMsiDifferentHost() {
+        const a = document.createElement('a');
+        a.href = "https://the.earth.li/~sgtatham/putty/latest/w32/putty-0.78-installer.msi";
+        a.download = `xx.msi`;
+        a.click();
+        a.remove();
+      }
+    </script>
+
+    <button onclick="downloadZipSameOrigin();">zip + same origin</button> - works<br>
+    <button style="color:red" onclick="downloadZipDifferentHost();">zip + diff host</button> - doesnt work<br>
+    <button onclick="downloadZipDifferentHostTargetBlank();">zip + diff host + target blank</button> - "works"<br>
+    <button onclick="downloadJsDifferentHost();">js + diff host</button> - browsers will open => "works"<br>
+    <button onclick="downloadMsiSameOrigin();">msi + same origin</button> - works<br>
+    <button style="color:red" onclick="downloadMsiDifferentHost();">msi + diff host</button> - doesnt work<br>
+
+    <div id="msg">msg</div>
   </body>
 </html>

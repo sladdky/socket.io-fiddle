@@ -16,6 +16,17 @@ io.on("connection", (socket) => {
   socket.on("disconnect", (reason) => {
     console.log(`disconnect ${socket.id} due to ${reason}`);
   });
+
+  let i = 0
+  function sayHi() {
+    socket.emit('topic', `hi: ${i++}x`)
+
+    setTimeout(() => {
+      sayHi()
+    }, 1000);
+  }
+
+  sayHi()
 });
 
 httpServer.listen(port, () => {
